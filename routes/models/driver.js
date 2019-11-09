@@ -4,8 +4,7 @@ var driverSchema = new mongoose.Schema({
     driverName: String,
     driverEmail: String,
     driverPassword: String,
-    usertype: String,
-    sid: Number
+    usertype: String
 });
 
 const driverdata = mongoose.model('driverDetails', driverSchema);
