@@ -46,8 +46,7 @@ router.post('/signinDetails' ,function(req,res,next) {
         }else{
             if(user[0]) {
                 if (user[0].Password === req.body.Password) {
-
-                    res.json({message: "Success", user: user});
+                    res.json({message: "Success", Usertype:user[0].Usertype, oid: user[0].oid, Lastname: user[0].Firstname});
                 }else {
                     res.json({message:"Invalid credentials"})
                 }
