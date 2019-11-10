@@ -4,6 +4,9 @@ var router=express.Router();
 var organization=require('../routes/models/organization');
 var shuttle=require('../routes/models/shuttle');
 
+var organizationAdmin=require('../routes/models/organizationAdmin');
+var driver=require('../routes/models/driver');
+var shuttle = require('../routes/models/shuttle');
 
 router.get('/orgtypes',function (req,res){
     organization.distinct('type',function (err,details) {
@@ -34,7 +37,51 @@ router.post('/register', function (req, res, next) {
     console.log(Organ);
     organization.create(Organ)
         .then(organ => {
-            res.status(200).json({message:"success",'Result': 'Organization added successfully'});
+            res.status(200).json({message:"success",'Result': 'Added successfully'});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json({message:err});
+        });
+});
+
+
+
+router.post('/AddOrganizationAdmin', function (req, res, next) {
+    let organAdmin = new organizationAdmin(req.body);
+    console.log(organAdmin);
+    organizationAdmin.create(organAdmin)
+        .then(organAdmin => {
+            res.status(200).json({message:"success",'Result': 'Admin had been added successfully'});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json({message:err});
+        });
+});
+
+router.post('/createDriver', function (req, res, next) {
+    let Driver = new driver(req.body);
+    console.log(Driver);
+    driver.create(Driver)
+        .then(Driver => {
+            res.status(200).json({message:"success",'Result': 'Driver had been added successfully'});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json({message:err});
+        });
+});
+
+
+
+
+router.post('/AddShuttle', function (req, res, next) {
+    let Shuttle = new shuttle(req.body);
+    console.log(Shuttle);
+    shuttle.create(Shuttle)
+        .then(Shuttle => {
+            res.status(200).json({message:"success",'Result': 'Driver had been added successfully'});
         })
         .catch(err => {
             console.log(err);
@@ -50,5 +97,33 @@ router.route('/getallAccounts').get(function (req, res, next) {
         res.json(account);
     });
 });
+
+router.route('/getallAdminUsers').get(function (req, res, next) {
+    console.log('in backend route page');
+    organizationAdmin.find({ "Usertype" : "OrganizationAdmin"},function (err, account) {
+        if (err) return next(err);
+        res.json(account);
+    });
+});
+
+
+router.route('/getAllDrivers').get(function (req, res, next) {
+    console.log('in backend route page');
+    driver.find({ "Usertype" : "Driver"},function (err, account) {
+        if (err) return next(err);
+        res.json(account);
+    });
+});
+
+
+
+router.route('/getAllShuttles').get(function (req, res, next) {
+    console.log('in backend route page');
+    shuttle.find(function (err, shuttle) {
+        if (err) return next(err);
+        res.json(shuttle);
+    });
+});
+
 module.exports = router;
 

@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
 var organizationAdminSchema = new mongoose.Schema({
-    adminName: String,
-    adminEmail: String,
-    adminPassword: String,
-    usertype: String,
+    Firstname: String,
+    Lastname: String,
+    EmailID: String,
+    Password: String,
+    Usertype: String,
+    OrganizationName: String,
     oid: String
 });
 

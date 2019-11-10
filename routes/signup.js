@@ -2,6 +2,7 @@ var express = require('express');
 var router=express.Router();
 var signup = require('../routes/models/signup.js');
 
+var organizationAdmin=require('../routes/models/organizationAdmin');
 
 
 
@@ -37,9 +38,28 @@ router.post('/profiledetails',function(req,res) {
 
 
 router.post('/signinDetails' ,function(req,res,next) {
-    //console.log(req.body);
+    console.log("req.body",req.body);
     signup.find({'EmailID': req.body.EmailID}, function (err, user) {
-        //  console.log(user);
+         console.log("user",user);
+        if (user.length <= 0){
+            res.json('no user available register to login');
+        }else{
+            if(user[0]) {
+                if (user[0].Password === req.body.Password) {
+
+                    res.json({message: "Success", user: user});
+                }else {
+                    res.json({message:"Invalid credentials"})
+                }
+            }
+        }
+    });
+});
+
+router.post('/CheckOrgaAdmin' ,function(req,res,next) {
+    console.log("req.body",req.body);
+    organizationAdmin.find({'EmailID': req.body.EmailID}, function (err, user) {
+        console.log("user",user);
         if (user.length <= 0){
             res.json('no user available register to login');
         }else{
