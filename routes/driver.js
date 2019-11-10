@@ -3,6 +3,17 @@ var router=express.Router();
 var driver=require('../routes/models/driver.js');
 var shuttle=require('../routes/models/shuttle.js');
 
+
+router.get('/getAll', function (req, res, next) {
+    console.log("hai");
+    driver.find(function (err, data) {
+        console.log(data);
+        if (err) console.log(err);
+        res.json(data);
+    });
+
+});
+
 router.post('/signupDetails', function (req, res, next) {
     console.log(req.body);
     driver.find({driverEmail: req.body.driverEmail}, function (err, data) {
