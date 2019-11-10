@@ -64,6 +64,14 @@ router.post('/signinDetails' ,function(req,res,next) {
     });
 });
 
+router.put('/updateLocation', function (req, res, next) {
+    console.log("details " + req.body.currLat + ' ' + req.body.currLon)
+    driver.update({driverEmail: req.body.driverEmail}, { $set: {'currLat': req.body.currLat} }, { $set: {'currLon': req.body.currLon} }, function (err,post){
+        if (err) return next(err);
+        res.json(post);
+    })
+});
+
 
 module.exports = router;
 
