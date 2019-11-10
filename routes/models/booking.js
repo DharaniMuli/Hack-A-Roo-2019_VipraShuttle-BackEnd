@@ -5,8 +5,7 @@ var bookingSchema = new mongoose.Schema({
     requesttime: String,
     fromlocation: String,
     tolocation: String,
-    adminconfirmationid: String,
-    shuttleid: String
+    driverEmail: String,
 });
 
 const bookingdata = mongoose.model('bookings', bookingSchema);
