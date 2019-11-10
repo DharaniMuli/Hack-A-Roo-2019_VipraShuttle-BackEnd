@@ -36,7 +36,7 @@ router.post('/profiledetails',function(req,res) {
 
 router.post('/signinDetails' ,function(req,res,next) {
     //console.log(req.body);
-    driver.find({'driverEmail': req.body.driverEmail}, function (err, user) {
+    driver.find({driverEmail: req.body.driverEmail}, function (err, user) {
         //  console.log(user);
         if (user.length <= 0){
             res.json('no user available register to login');
@@ -44,9 +44,9 @@ router.post('/signinDetails' ,function(req,res,next) {
             if(user[0]) {
                 if (user[0].driverPassword === req.body.driverPassword) {
 
-                    res.json("Success");
+                    res.json({message: "Success", user: user});
                 }else {
-                    res.json("incorrect password")
+                    res.json({message:"Invalid credentials"})
                 }
             }
         }
