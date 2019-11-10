@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
 var driverSchema = new mongoose.Schema({
-    driverName: String,
-    driverEmail: String,
-    driverPassword: String,
+    Firstname: String,
+    Lastname: String,
+    EmailID: String,
+    Password: String,
     Usertype: String,
     sid: Number,
     currLat: String,
