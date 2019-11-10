@@ -3,9 +3,6 @@ var mongoose=require('mongoose');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
-
-config = require('./routes/mongo');
-
 //routes
 var appRoutes = require('./routes/app');
 var adminRoutes=require('./routes/admin');
@@ -17,6 +14,8 @@ var cors = require('cors');
 var app = express();
 
 mongoose.Promise = global.Promise;
+
+config = require('./routes/mongo');
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
     () => {console.log('Database is connected') },
