@@ -16,7 +16,7 @@ router.get('/getAll', function (req, res, next) {
 
 router.post('/signupDetails', function (req, res, next) {
     console.log(req.body);
-    driver.find({driverEmail: req.body.driverEmail}, function (err, data) {
+    driver.find({EmailID: req.body.EmailID}, function (err, data) {
         if (data.length <= 0) {
             if (req.body.driverEmail !== null && req.body.driverPassword !== null) {
                 console.log(req.body);
@@ -37,7 +37,7 @@ router.post('/signupDetails', function (req, res, next) {
 
 
 router.post('/profiledetails',function(req,res) {
-    driver.find({driverEmail: req.body.userid}, function(err,data) {
+    driver.find({EmailID: req.body.userid}, function(err,data) {
         //console.log(data);
         res.json(data);
     });
@@ -47,8 +47,8 @@ router.post('/profiledetails',function(req,res) {
 
 router.post('/signinDetails' ,function(req,res,next) {
     //console.log(req.body);
-    driver.find({driverEmail: req.body.driverEmail}, function (err, user) {
-        //  console.log(user);
+    driver.find({EmailID: req.body.EmailID}, function (err, user) {
+         console.log(user);
         if (user.length <= 0){
             res.json('no user available register to login');
         }else{
@@ -66,7 +66,7 @@ router.post('/signinDetails' ,function(req,res,next) {
 
 router.put('/updateLocation', function (req, res, next) {
     console.log("details " + req.body.currLat + ' ' + req.body.currLon)
-    driver.update({driverEmail: req.body.driverEmail}, { $set: {'currLat': req.body.currLat} }, { $set: {'currLon': req.body.currLon} }, function (err,post){
+    driver.update({EmailID: req.body.EmailID}, { $set: {'currLat': req.body.currLat} }, { $set: {'currLon': req.body.currLon} }, function (err,post){
         if (err) return next(err);
         res.json(post);
     })

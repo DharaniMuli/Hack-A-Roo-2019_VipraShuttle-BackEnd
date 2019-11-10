@@ -20,6 +20,12 @@ router.post('/createBooking', function (req, res, next) {
     });
 });
 
+router.post('/getMyPickUps',function(req,res) {
+    booking.find({'driverEmail': req.body.userid}, function(err,data) {
+        res.json(data);
+    });
+});
+
 
 
 
