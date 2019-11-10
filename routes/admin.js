@@ -45,5 +45,21 @@ router.get('/dashboardDetails', function(req,res){
     // });
 });
 
-
+router.post('/ShuttleDriverDetails' ,function(req,res,next) {
+    //console.log(req.body);
+    driver.find({driverEmail: req.body.driverEmail}, function (err, user) {
+        //  console.log(user);
+        if (user.length <= 0){
+            res.json('no user available register to login');
+        }else{
+            if(user[0]) {
+                if (user[0].driverPassword === req.body.driverPassword) {
+                    res.json({message: "Success", Usertype:user[0].Usertype, oid: user[0].oid, Lastname: user[0].Firstname});
+                }else {
+                    res.json({message:"Invalid credentials"})
+                }
+            }
+        }
+    });
+});
 module.exports = router;
