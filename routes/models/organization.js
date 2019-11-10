@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 var organizationSchema = new mongoose.Schema({
-    oid: String,
     name:  String,
     type: String,
     address: String

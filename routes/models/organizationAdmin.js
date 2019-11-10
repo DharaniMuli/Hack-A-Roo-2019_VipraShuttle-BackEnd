@@ -5,7 +5,7 @@ var organizationAdminSchema = new mongoose.Schema({
     adminEmail: String,
     adminPassword: String,
     usertype: String,
-    oid: Number
+    oid: String
 });
 
 const organizationAdmindata = mongoose.model('organizationAdminDetails', organizationAdminSchema);
