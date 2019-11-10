@@ -66,7 +66,7 @@ router.post('/CheckOrgaAdmin' ,function(req,res,next) {
             if(user[0]) {
                 if (user[0].Password === req.body.Password) {
 
-                    res.json({message: "Success", user: user});
+                    res.json({message: "Success", oid: user[0].oid, firstname: user[0].Firstname});
                 }else {
                     res.json({message:"Invalid credentials"})
                 }

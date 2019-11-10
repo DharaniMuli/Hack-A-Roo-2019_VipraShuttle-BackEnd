@@ -8,6 +8,13 @@ var organizationAdmin=require('../routes/models/organizationAdmin');
 var driver=require('../routes/models/driver');
 var shuttle = require('../routes/models/shuttle');
 
+router.get('/getOrgNames',function (req,res){
+    organization.distinct('name',function (err,details) {
+        res.json(details);
+    });
+});
+
+
 router.get('/orgtypes',function (req,res){
     organization.distinct('type',function (err,details) {
       res.json(details);
