@@ -12,6 +12,7 @@ var adminRoutes=require('./routes/admin');
 var signupRoutes=require('./routes/signup');
 var driverRoutes=require('./routes/driver');
 var userRoutes=require('./routes/user');
+var bookingRoutes=require('./routes/bookings');
 var cors = require('cors');
 
 var app = express();
@@ -32,6 +33,7 @@ app.use('/admin',adminRoutes);
 app.use('/user',userRoutes);
 app.use('/signup',signupRoutes);
 app.use('/driver',driverRoutes);
+app.use('/booking',bookingRoutes);
 
 var port= process.env.PORT||3000;
 app.listen(port,() => console.log('server started on port', port));
