@@ -29,6 +29,26 @@ router.post('/fromlocation',function(req,res){
     });
 });
 
+router.post('/register', function (req, res, next) {
+    let Organ = new organization(req.body);
+    console.log(Organ);
+    organization.create(Organ)
+        .then(organ => {
+            res.status(200).json({message:"success",'Result': 'Organization added successfully'});
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json({message:err});
+        });
+});
 
+// Get all accounts
+router.route('/getallAccounts').get(function (req, res, next) {
+    console.log('in backend route page');
+    organization.find(function (err, account) {
+        if (err) return next(err);
+        res.json(account);
+    });
+});
 module.exports = router;
 
