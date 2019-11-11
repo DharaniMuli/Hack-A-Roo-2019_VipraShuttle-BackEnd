@@ -7,3 +7,5 @@ This is a Node js project for Courtesy Shuttle application. The project contains
 Part 1(Web Application):https://www.youtube.com/watch?v=N2GGm5MdVwY&feature=youtu.be
 
 Part 2(Cross Platform Mobila Application):https://www.youtube.com/watch?v=pstdoGueMw0&feature=youtu.be
+
+PPT: https://github.com/DharaniMuli/Hack-A-Roo-2019_VipraShuttle-Mobile/blob/master/Requirements/Vipra_Courtesy_Shuttle_PPT.pptx
