@@ -3,6 +3,8 @@ var router=express.Router();
 
 
 var shuttle = require('../routes/models/shuttle.js');
+var driver = require('../routes/models/driver.js');
+var shuttles = require('../routes/models/shuttlebooking.js');
 
 router.get('/dashboardDetails', function(req,res){
     console.log(shuttle);
@@ -45,7 +47,7 @@ router.get('/dashboardDetails', function(req,res){
     // });
 });
 
-router.post('/ShuttleDriverDetails' ,function(req,res,next) {
+router.get('/ShuttleDriverDetails' ,function(req,res,next) {
     //console.log(req.body);
     driver.find({driverEmail: req.body.driverEmail}, function (err, user) {
         //  console.log(user);
@@ -60,6 +62,26 @@ router.post('/ShuttleDriverDetails' ,function(req,res,next) {
                 }
             }
         }
+    });
+});
+
+
+// Get all dashboardbookingdetails
+router.route('/getshuttlebooking').get(function (req, res, next) {
+    console.log('in backend route page');
+
+    shuttlebooking.find(function (err, account) {
+        if (err) return next(err);
+        res.json(account);
+    });
+});
+
+
+router.get('/getshuttelbooking',function(req,res){
+    shuttles.find({},function (err,account) {
+        console.log(account);
+        res.json(account);
+
     });
 });
 module.exports = router;
