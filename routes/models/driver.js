@@ -6,7 +6,7 @@ var driverSchema = new mongoose.Schema({
     EmailID: String,
     Password: String,
     Usertype: String,
-    sid: Number,
+    OrganizationName: String,
     currLat: String,
     currLon: String
 });

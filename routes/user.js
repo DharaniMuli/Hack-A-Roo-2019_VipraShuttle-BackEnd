@@ -8,6 +8,16 @@ var organizationAdmin=require('../routes/models/organizationAdmin');
 var driver=require('../routes/models/driver');
 var shuttle = require('../routes/models/shuttle');
 
+
+router.post('/orgname',function(req,res){
+   organization.find({"_id":req.body}).distinct("name",function (err,data) {
+       return res.json(data);
+   });
+});
+
+
+
+
 router.get('/getOrgNames',function (req,res){
     organization.distinct('name',function (err,details) {
         res.json(details);
@@ -22,8 +32,11 @@ router.get('/orgtypes',function (req,res){
 });
 
 //type in body
-router.post('/orgnames',function(req,res){
-     organization.find({"type": req.body.type}).distinct('name',function(err,names){
+router.post('/orgnam',function(req,res){
+
+    console.log('this is 1 st call');
+    console.log('org name',req.body);
+     organization.find({"_id": Object(req.body)}).distinct('name',function(err,names){
          res.json(names);
      });
 });
@@ -121,6 +134,16 @@ router.route('/getAllDrivers').get(function (req, res, next) {
         res.json(account);
     });
 });
+
+
+router.post('/getDrivers',function (req, res) {
+    console.log('get drivers');
+    console.log(req.body);
+    driver.find({"OrganizationName": req.body.type}, function (err, account) {
+        if (err) return next(err);
+        res.json(account);
+    });
+})
 
 
 
