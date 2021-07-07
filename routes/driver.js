@@ -15,13 +15,14 @@ router.get('/getAll', function (req, res, next) {
 
 router.post('/signupDetails', function (req, res, next) {
     console.log(req.body);
+    console.log("I am here at the driver login backend page")
     driver.find({EmailID: req.body.EmailID}, function (err, data) {
         if (data.length <= 0) {
             if (req.body.EmailID !== null && req.body.Password !== null) {
                 console.log(req.body);
                 driver.create(req.body, function (err, post) {
                     if (err) return next(err);
-                    res.json(post);
+                    res.json({message: "Success", Usertype:user[0].Usertype, oid: user[0].oid, Lastname: user[0].Firstname});
                 });
             } else {
                 res.json("Please fill the details");
@@ -31,7 +32,6 @@ router.post('/signupDetails', function (req, res, next) {
         }
     });
 });
-
 
 
 

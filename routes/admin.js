@@ -1,6 +1,6 @@
 var express = require('express');
 var router=express.Router();
-
+var driver = require('../routes/models/driver.js');
 
 var shuttle = require('../routes/models/shuttle.js');
 var driver = require('../routes/models/driver.js');
@@ -64,6 +64,7 @@ router.get('/ShuttleDriverDetails' ,function(req,res,next) {
         }
     });
 });
+
 
 
 // Get all dashboardbookingdetails
